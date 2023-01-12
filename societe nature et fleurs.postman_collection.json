@@ -12,7 +12,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/plantes",
+					"raw": "http://localhost:8080/api/plant",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -20,7 +20,7 @@
 					"port": "8080",
 					"path": [
 						"api",
-						"plantes"
+						"plant"
 					]
 				}
 			},
@@ -54,7 +54,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": " {\r\n            \"name\": \"plant32\",\r\n            \"unitprice_ati\": 35,\r\n            \"quantity\": 15,\r\n            \"category\": \"orchides\",\r\n            \"rating\": 0,\r\n            \"url_picture\": \"plant.png\"\r\n        },",
+					"raw": " {\r\n            \"name\": \"plant32\",\r\n            \"unitprice_ati\": 35,\r\n            \"quantity\": 14,\r\n            \"category\": \"orchides\",\r\n            \"rating\": 3,\r\n            \"url_picture\": \"plant.png\"\r\n }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -62,7 +62,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/plantes/30",
+					"raw": "http://localhost:8080/api/plant",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -70,8 +70,7 @@
 					"port": "8080",
 					"path": [
 						"api",
-						"plantes",
-						"30"
+						"plant"
 					]
 				}
 			},
@@ -84,7 +83,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": " {\r\n            \"name\": \"plant28\",\r\n            \"unitprice_ati\": 35,\r\n            \"quantity\": 15,\r\n            \"category\": \"orchides\",\r\n            \"rating\": 0,\r\n            \"url_picture\": \"plant.png\"\r\n        },",
+					"raw": " { \r\n            \"name\": \"planta\",\r\n            \"unitprice_ati\": 21,\r\n            \"quantity\": 12,\r\n            \"category\": \"arbuste\",\r\n            \"rating\": 5,\r\n            \"url_picture\": \"plant-13.png\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -92,16 +91,16 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/plantes/34",
+					"raw": "http://localhost:8085/api/plantes/14",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8085",
 					"path": [
 						"api",
 						"plantes",
-						"34"
+						"14"
 					]
 				}
 			},
@@ -122,7 +121,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/plantes/34",
+					"raw": "http://localhost:8080/api/plant/35",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -130,8 +129,8 @@
 					"port": "8080",
 					"path": [
 						"api",
-						"plantes",
-						"34"
+						"plant",
+						"35"
 					]
 				}
 			},

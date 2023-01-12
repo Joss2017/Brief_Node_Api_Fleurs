@@ -9,7 +9,7 @@ import path from 'path';
 AppDataSource.initialize().then(async () => {
   const app = express();
   /**---------------Paramètre données au format JSON + mise en place CORS pour les droits+CRUD ----------------------*/
-  app.use(express.json());
+  app.use(express.json()); 
   app.use(
     cors({
       origin: '*',

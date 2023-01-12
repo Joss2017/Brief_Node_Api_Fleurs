@@ -1,6 +1,6 @@
-import { Request, Response } from "express";
-import Plante from "../models/Plante";
-import PlanteService from "../services/PlanteService";
+import { Request, Response } from 'express';
+import Plante from '../models/Plante';
+import PlanteService from '../services/PlanteService';
 
 /**-----------------Check les différentes requêtes afin de déterminer si les paramètres sont ok---------------------*/
 
@@ -12,29 +12,31 @@ class PlanteController {
   async getAll(req: Request, res: Response) {
     try {
       const allPlants = await this.planteService.getAll();
-      res.send({ status: "OK :)", data: allPlants });
+      res.send({ status: 'OK :)', data: allPlants });
     } catch (error) {
-      res.send({ status: "FAILED", message: error });
+      res.send({ status: 'FAILED', message: error });
     }
   }
 
   /**----------------- AFFICHE LES PLANTES PAR ID-------------------------------------*/
 
-  async getOnePlantById(req: Request, res: Response) {
+  async getOnePlantById(req: Request, res: Response): Promise<void> {
     const paramId = req.params.id;
     if (!paramId) {
       res.status(400).send({
-        status: "FAILED",
-        data: { error: "L'Id doit être paramétré :(" },
+        status: 'FAILED',
+        data: { error: "Parameter 'id' can not be empty" },
       });
       return;
     }
     try {
       const id = parseInt(paramId);
-      const onePlant = await this.planteService.getOnePlantById(id);
-      res.send({ status: "OK", data: onePlant });
-    } catch (error) {
-      res.send({ status: "FAILED", message: error });
+      const oneHero = await this.planteService.getOnePlantById(id);
+      res.send({ status: 'OK', data: oneHero });
+    } catch (error: any) {
+      res
+        .status(error?.status || 500)
+        .send({ status: 'FAILED', data: { error: error?.message || error } });
     }
   }
 
@@ -54,7 +56,7 @@ class PlanteController {
       newPlant.url_picture === undefined
     ) {
       res.status(400).send({
-        status: "FAILED",
+        status: 'FAILED',
         data: {
           error:
             "L'une des clés suivantes est manquante ou vide dans le req.body: 'name', 'unitprice_ati', 'quantity','category','rating','url_picture'",
@@ -66,7 +68,7 @@ class PlanteController {
     try {
       await this.planteService.createNewPlant(newPlant);
       res.status(200).send({
-        status: "OK",
+        status: 'OK',
         message: `Nouvelle Plante crée!!!!`,
         data: newPlant,
       });
@@ -85,7 +87,7 @@ class PlanteController {
     const paramId = req.params.id;
     if (!paramId) {
       res.status(400).send({
-        status: "FAILED",
+        status: 'FAILED',
         data: { error: "L'Id doit être paramétré :(" },
       });
       return;
@@ -98,7 +100,7 @@ class PlanteController {
       !changes.url_picture
     ) {
       res.status(400).send({
-        status: "FAILED",
+        status: 'FAILED',
         data: {
           error:
             "L'une des clés suivantes est manquante ou vide dans le req.body: name,unitprice_ati,quantity,category,rating,url_picture ",
@@ -109,10 +111,11 @@ class PlanteController {
 
     try {
       const id = parseInt(paramId);
-      await this.planteService.updateOnePlant(id, changes);
+      const update = await this.planteService.updateOnePlant(id, changes);
+
       res.status(201).send({
-        status: "OK",
-        message: `La plante avec l'ID ${id} est mis à jour`,
+        message: `Les données ${
+          changes.name, changes.category} avec l'ID ${id} ont été  mis à jour`,
       });
     } catch (error: any) {
       res.send({ message: error?.message });
@@ -125,7 +128,7 @@ class PlanteController {
     const paramId = req.params.id;
     if (!paramId) {
       res.status(400).send({
-        status: "FAILED",
+        status: 'FAILED',
         data: { error: "L'ID doit être paramétré" },
       });
       return;
@@ -135,13 +138,13 @@ class PlanteController {
       const id = parseInt(paramId);
       await this.planteService.deleteOnePlant(id);
       res.status(200).send({
-        status: "OK",
+        status: 'OK',
         message: `La Plante avec l' id ${id} est supprimé`,
       });
     } catch (error: any) {
       res
         .status(error?.status || 500)
-        .send({ status: "FAILED", data: { error: error?.message || error } });
+        .send({ status: 'FAILED', data: { error: error?.message || error } });
     }
   }
 }

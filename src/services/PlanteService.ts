@@ -1,6 +1,5 @@
-import AppDataSource from "../data-source";
-import Plante from "../models/Plante";
-
+import AppDataSource from '../data-source';
+import Plante from '../models/Plante';
 
 /**-----------------Partie Algo: methode avec BDD en fonction des requêtes-------------------------*/
 
@@ -8,15 +7,13 @@ class PlanteService {
   /**----------------- AFFICHE TOUTES LES PLANTES-------------------------------------*/
 
   async getAll(): Promise<Plante[]> {
-    return AppDataSource.query("SELECT * FROM plant;");
+    return AppDataSource.query('SELECT * FROM plant;');
   }
 
   /**----------------- AFFICHE LES PLANTES PAR ID-------------------------------------*/
 
   async getOnePlantById(id: number): Promise<Plante> {
-    return AppDataSource.query(
-      `SELECT plant FROM plant WHERE plant.id = ${id};`
-    );
+    return AppDataSource.query(`SELECT * from plant WHERE plant.id=${id};`);
   }
 
   /**----------------- CREATION D'UNE NOUVELLE PLANTE-------------------------------------*/
